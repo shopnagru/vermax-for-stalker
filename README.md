@@ -1,7 +1,7 @@
 # vermax-for-stalker
 
-#Система управления приставками Vermax.
+Система управления приставками Vermax.
 
-##English
+English
 
-#Vermax IPTV Media Player Management System
+Vermax IPTV Media Player Management System
