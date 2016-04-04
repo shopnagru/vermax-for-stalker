@@ -1,0 +1,305 @@
+/*
+* Copyright (c) 2016 ООО "НАГ"
+* Developer: Ivan Slyusar (xvanok@nag.ru)
+*/
+*{
+    font-family: arial, sans-serif;
+}
+html, body{
+    width: 100%;
+    min-width: 1200px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: rgb(238, 238, 238);
+}
+hr {
+    border: none;
+    border-top: 1px solid silver;
+}
+input[type="submit"] {
+    margin: 20px 0px;
+}
+iframe{
+    top: 19px;
+    border: none;
+    position: relative;
+    width: 100%;
+    height: calc(100% - 19px);
+}
+#header{
+    width: calc(100% - 400px);
+    height: 70px;
+    background: rgb(238, 238, 238);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 99;
+    min-width: 1200px;
+}
+#logout{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    margin: 5px;
+}
+#menu {
+    min-width: 779px;
+    height: 35px;
+    margin-left: 330px;
+    margin-top: 35px;
+}
+#menu select, #menu img{
+    cursor: pointer;
+}
+#conf{
+    border-left: 1px solid silver;
+}
+.selbut{
+    padding-left: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.tab{
+    min-width: 170px;
+    height: 35px;
+    border: 0px;
+    background: none;
+    border-right: 1px dotted #484848;
+    text-align: center;
+    font-size: 15px;
+    padding: 0px 5px;
+}
+.tab:hover{
+    background: silver;
+}
+.notact{
+    background: silver;
+    cursor: default;
+
+}
+.notact:focus{
+    outline: none;
+}
+.tab:hover option{
+    background: white;
+}
+#content {
+    position: relative;
+    top: 70px;
+    background: white;
+    padding: 20px;
+    width: calc(100% - 40px);
+    text-align: center;
+    min-height: calc(100% - 110px);
+    display: none;
+    overflow-y: scroll;
+    max-height: calc(100% - 110px);
+}
+.save{
+    font-size: 20px;
+    width: 100%;
+    min-width: 654px;
+    max-width: 1330px;
+    padding: 10px;
+}
+.conf_block {
+    border: 1px solid silver;
+    padding: 15px;
+    border-radius: 15px;
+    margin: 10px;
+}
+.col {
+    display: inline-block;
+    vertical-align: top;
+}
+th {
+    font-size: 24px;
+    padding-bottom: 15px;
+}
+input[name="name"] {
+    width: 250px;
+}
+#name{
+    width: 300px;
+}
+#textconf{
+    max-width: 100%;
+    min-height: 300px;
+}
+#request{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    color: white;
+    width: 300px;
+    padding: 10px;
+}
+.dialog{
+    display: block;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background: #0868AB;
+    color: white;
+    width: 300px;
+    padding: 0px 10px 15px 10px;
+    margin-left: -150px;
+    margin-top: -60px;
+}
+#dialogremove, #dialogremove2{
+    background: rgb(203, 42, 42);
+}
+#main{
+    height: 100%;
+}
+.logo{
+    max-width: 280px;
+    max-height: 50px;
+    padding: 10px 16px;
+}
+.lwrap{
+    width: 330px;
+    height: 70px;
+    position: absolute;
+    cursor: pointer;
+}
+.lwrap:hover{
+    background: rgb(215, 215, 215);
+}
+.stalk{
+    position: absolute;
+    left: 168px;
+    padding: 0px 10px 0px 10px;
+    top: 44px;
+    cursor: pointer;
+}
+.help{
+    position: absolute;
+    width: 170px;
+    background: url(arrow.png) 50% 0 no-repeat;
+    min-height: 28px;
+    padding: 5px;
+    padding-top: 40px;
+    max-height: 120px;
+    overflow: auto;
+}
+#dialogaddmin{
+    text-align: center;
+}
+#dialogaddmin div{
+    text-align: right;
+}
+#leftmenu{
+    position: absolute;
+    top: 70px;
+    z-index: 9;
+    width: 200px;
+    padding: 10px;
+    background: rgb(238, 238, 238);
+    border: 1px solid silver;
+    border-left: 0px;
+}
+#userinfo{
+    position: relative;
+    padding-bottom: 30px;
+    border-bottom: 1px solid silver;
+    margin-bottom: 15px;
+    /*height: 40px;*/
+}
+#youProv {
+    width: 221px;
+    margin-left: -10px;
+    margin-bottom: -15px;
+    text-align: right;
+}
+#pLogo{
+    max-width: 221px;
+    max-height: 100px;
+}
+.iplist{
+    margin-bottom: 10px;
+}
+.list{
+    display: none;
+    background: white;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+.listtitle,  .showall{
+    text-decoration: underline;
+    cursor: pointer;
+    cursor: pointer;
+    margin: 2px 10px;
+}
+.table{
+    margin: 0 auto;
+}
+.table td, .table th{
+    padding: 10px;
+    border-bottom: 1px solid silver;
+}
+.table .mid{
+    border-left: 1px solid silver;
+    border-right: 1px solid silver;
+}
+#getprov{
+    text-decoration: underline;
+    color: #1a0dab;
+    cursor: pointer;
+}
+#addman{
+    display: none;
+}
+#system #graph{
+    display: none;
+    border: 1px solid silver;
+}
+#system:hover #graph{
+    display: block;
+    position: fixed;
+    top: 70px;
+    left: 210px;
+}
+#graph:hover{
+    display: block;
+}
+#ver {
+    position: absolute;
+    top: 54px;
+    width: 175px;
+    text-align: right;
+    color: silver;
+}
+#ch_log{
+    position: absolute;
+    width: 22px;
+    padding: 6px;
+    margin-left: 35px;
+    border-left: 1px dotted black;
+}
+#ch_log:hover{
+    background: rgb(215, 215, 215);
+}
+#docs{
+    position: absolute;
+    width: 22px;
+    padding: 6px;
+}
+#docs:hover{
+    background: rgb(215, 215, 215);
+}
+.t_menu:hover{
+    background: rgb(215, 215, 215);
+    cursor: pointer;
+}
+.input_ip, .input_mac{
+    width: 120px;
+}
+.user_save{
+    display: none;
+}
+.users_t{
+    margin: 0 auto;
+}
