@@ -14,7 +14,7 @@ header('Content-Type: text/html; charset=utf-8');
         <div id="header">
             <div class="lwrap" onclick="portal();">
                 <img src ="/vermax/assets/logo.png" class="logo">
-                <div id="ver" title="Версия панели управления">v. S1.0 for</div>
+                <div id="ver" title="Версия панели управления">v. S1.0.1 for</div>
                 <img src="/vermax/assets/logo_stalker_black.png" title="Перейти в Stalker" class="stalk">
             </div>
             <div id="menu">

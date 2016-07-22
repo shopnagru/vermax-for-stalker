@@ -302,7 +302,25 @@ class vermaxActions
 
     //Подключить базу
     public function initDB(){
-        $conf = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/stalker_portal/server/config.ini");
+        if(file_exists($_SERVER["DOCUMENT_ROOT"]."/stalker_portal/server/custom.ini")){
+            $conf = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/stalker_portal/server/custom.ini");
+            $d_conf = parse_ini_file($_SERVER["DOCUMENT_ROOT"] . "/stalker_portal/server/config.ini");
+            if(!isset($conf["mysql_host"])){
+                $conf["mysql_host"] = $d_conf["mysql_host"];
+            }
+            if(!isset($conf["mysql_user"])){
+                $conf["mysql_user"] = $d_conf["mysql_user"];
+            }
+            if(!isset($conf["mysql_pass"])){
+                $conf["mysql_pass"] = $d_conf["mysql_pass"];
+            }
+            if(!isset($conf["db_name"])){
+                $conf["db_name"] = $d_conf["db_name"];
+            }
+        }
+        else {
+            $conf = parse_ini_file($_SERVER["DOCUMENT_ROOT"] . "/stalker_portal/server/config.ini");
+        }
         $mysqli = new mysqli($conf["mysql_host"], $conf["mysql_user"], $conf["mysql_pass"], $conf["db_name"]);
         $mysqli->set_charset("utf8");
         return $mysqli;
@@ -363,7 +381,7 @@ class vermaxActions
                 $mysqli->query("UPDATE `vermax_configs` SET `name` = '".$conf_name."' WHERE `id` = '".$c_cid."'");
                 echo $c_cid;
             }
-            else if($_POST['rm_conf']){
+            else if(isset($_POST['rm_conf'])){
                 $conf = $_POST['rm_conf'];
                 if(isset($conf['id'])) {
                     $id = $conf['id'];
