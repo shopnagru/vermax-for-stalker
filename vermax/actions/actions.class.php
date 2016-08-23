@@ -258,16 +258,33 @@ class vermaxActions
         while($pack = $pack_sql->fetch_assoc()){
             $pi = $pack['package_id'];
         }
-        $ch = array();
-        $ch_sql = $mysqli->query("SELECT `service_id` FROM `service_in_package` WHERE `package_id` LIKE '".$pi."'");
-        while($chan = $ch_sql->fetch_assoc()){
-            $ch[] = $chan['service_id'];
+        $fp = false;
+        $ffpl = $mysqli->query("SELECT `all_services` FROM `services_package` WHERE `id` LIKE '".$pi."'");
+        while($fpl = $ffpl->fetch_assoc()){
+            if($fpl['all_services'] == 1){
+                $fp = true;
+            }
         }
-        $channels = array();
-        foreach($ch as $cid) {
-            $ch_sql = $mysqli->query("SELECT * FROM `itv` WHERE `id` LIKE '" . $cid . "' LIMIT 1");
-            while ($channel = $ch_sql->fetch_assoc()) {
+
+        if($fp){
+            $channels = array();
+            $ch_sql = $mysqli->query("SELECT * FROM `itv`");
+            while($channel = $ch_sql->fetch_assoc()){
                 $channels[$channel['number']] = $channel;
+            }
+        }
+        else {
+            $ch = array();
+            $ch_sql = $mysqli->query("SELECT `service_id` FROM `service_in_package` WHERE `package_id` LIKE '" . $pi . "'");
+            while ($chan = $ch_sql->fetch_assoc()) {
+                $ch[] = $chan['service_id'];
+            }
+            $channels = array();
+            foreach ($ch as $cid) {
+                $ch_sql = $mysqli->query("SELECT * FROM `itv` WHERE `id` LIKE '" . $cid . "' LIMIT 1");
+                while ($channel = $ch_sql->fetch_assoc()) {
+                    $channels[$channel['number']] = $channel;
+                }
             }
         }
         $epg_list = array();
@@ -302,25 +319,7 @@ class vermaxActions
 
     //Подключить базу
     public function initDB(){
-        if(file_exists($_SERVER["DOCUMENT_ROOT"]."/stalker_portal/server/custom.ini")){
-            $conf = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/stalker_portal/server/custom.ini");
-            $d_conf = parse_ini_file($_SERVER["DOCUMENT_ROOT"] . "/stalker_portal/server/config.ini");
-            if(!isset($conf["mysql_host"])){
-                $conf["mysql_host"] = $d_conf["mysql_host"];
-            }
-            if(!isset($conf["mysql_user"])){
-                $conf["mysql_user"] = $d_conf["mysql_user"];
-            }
-            if(!isset($conf["mysql_pass"])){
-                $conf["mysql_pass"] = $d_conf["mysql_pass"];
-            }
-            if(!isset($conf["db_name"])){
-                $conf["db_name"] = $d_conf["db_name"];
-            }
-        }
-        else {
-            $conf = parse_ini_file($_SERVER["DOCUMENT_ROOT"] . "/stalker_portal/server/config.ini");
-        }
+        $conf = parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/stalker_portal/server/config.ini");
         $mysqli = new mysqli($conf["mysql_host"], $conf["mysql_user"], $conf["mysql_pass"], $conf["db_name"]);
         $mysqli->set_charset("utf8");
         return $mysqli;
@@ -381,7 +380,7 @@ class vermaxActions
                 $mysqli->query("UPDATE `vermax_configs` SET `name` = '".$conf_name."' WHERE `id` = '".$c_cid."'");
                 echo $c_cid;
             }
-            else if(isset($_POST['rm_conf'])){
+            else if($_POST['rm_conf']){
                 $conf = $_POST['rm_conf'];
                 if(isset($conf['id'])) {
                     $id = $conf['id'];
